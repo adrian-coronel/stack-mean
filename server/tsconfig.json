@@ -1,0 +1,27 @@
+{
+  "include": ["src/**/*"],
+
+  // Opciones del compilador TypeScript
+  "compilerOptions": {
+    // Establece la versión de ECMAScript a la que se compilará el código TypeScript
+    "target": "es2016",
+
+    // Especifica el sistema de módulos que se utilizará en la compilación
+    "module": "commonjs",
+
+    // Permite la interoperabilidad entre los módulos de CommonJS y los módulos de ECMAScript
+    "esModuleInterop": true,
+
+    // Obliga a que los nombres de los archivos tengan un formato de mayúsculas coherente
+    "forceConsistentCasingInFileNames": true,
+
+    // Habilita un conjunto más estricto de reglas de comprobación de TypeScript
+    "strict": true,
+
+    // Evita la comprobación de las bibliotecas de definición de TypeScript
+    "skipLibCheck": true,
+
+    // Especifica el directorio de salida para los archivos compilados
+    "outDir": "./dist"
+  }
+}

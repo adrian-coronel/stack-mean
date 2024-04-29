@@ -1,0 +1,110 @@
+<div class="container" style="margin-top: 90px;">
+  <a class="btnNuevo btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#modalclienteNuevo">Nuevo Cliente</a>
+
+  <!-- Tabla Clientes -->
+  <table id="tablaClientes" class="table mt-4 table-hover">
+      <thead class="table-info">
+          <tr>
+              <th style="display: none;">ID</th>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>Dni</th>
+              <th>Teléfono</th>
+              <th>Acciones</th>
+          </tr>
+      </thead>
+      <tbody>
+        @for (client of clients; track $index) {
+            <tr>
+                <td>{{client.name}}</td>
+                <td>{{client.lastname}}</td>
+                <td>{{client.dni}}</td>
+                <td>{{client.phone}}</td>
+                <td>
+                    <a href="#" class="btnEditar btn btn-outline-primary bi bi-pencil" role="button">Editar</a>
+                    <a href="/borrar/<%= client._id %>" class="btn btn-outline-danger bi bi-trash" role="button">Eliminar</a>
+                </td>
+            </tr>
+        }
+      </tbody>
+  </table>
+</div>
+
+
+
+<!-- Modal para Guardar -->
+<div id="modalclienteNuevo" class="modal fade" tabindex="-1" aria-labelledby="modalclienteNuevo" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+              <h5 class="modal-title" id="exampleModalLabel">Nuevo Cliente</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+                <div class="row">
+                    <div class="col-md-12">
+                      <label for="name" class="form-label">Nombre</label>
+                      <input [(ngModel)]="name" id="name" name="name" type="text" class="form-control" required>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="lastname" class="form-label">Apellidos</label>
+                        <input id="lastname" name="lastname" type="text" class="form-control" required>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="dni" class="form-label">DNI</label>
+                        <input id="dni" name="dni" type="text" class="form-control" required>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="phone" class="form-label">Teléfono</label>
+                        <input id="phone" name="phone" type="text" class="form-control" required>
+                    </div>                  
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+      </div>
+    </div>
+</div>
+
+
+<!-- Modal para Editar -->
+<div id="modalCliente" class="modal fade" tabindex="-1" aria-labelledby="modalCliente" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+          <div class="modal-header bg-danger text-white">
+              <h5 class="modal-title" id="exampleModalLabel">Actualizar Cliente</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form action="/update" method="POST">
+                  <input name="id_editar" id="id_editar" type="text" hidden>
+                  <div class="mb-3">
+                      <label for="name_editar" class="col-form-label">Nombre:</label>
+                      <input id="name_editar" name="name_editar" type="text" class="form-control">
+                  </div>
+                  <div class="mb-3">
+                      <label for="lastname_editar" class="col-form-label">Apellidos:</label>
+                      <input id="lastname_editar" name="lastname_editar" type="text" class="form-control">
+                  </div>
+                  <div class="mb-3">
+                    <label for="dni_editar" class="form-label">DNI</label>
+                    <input id="dni_editar" name="dni_editar" type="text" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phone_editar" class="form-label">Teléfono</label>
+                    <input id="phone_editar" name="phone_editar" type="text" class="form-control" required>
+                </div>                  
+          
+          <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" onclick="on()">Actualizar</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
